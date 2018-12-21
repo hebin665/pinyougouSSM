@@ -1,5 +1,5 @@
  //控制层 
-app.controller('specificationController' ,function($scope,$controller   ,specificationService){	
+app.controller('specificationController' ,function($scope,$controller,specificationService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -34,7 +34,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	//保存 
 	$scope.save=function(){				
 		var serviceObject;//服务层对象  				
-		if($scope.entity.id!=null){//如果有ID
+		if($scope.entity.specification.id!=null){//如果有ID
 			serviceObject=specificationService.update( $scope.entity ); //修改  
 		}else{
 			serviceObject=specificationService.add( $scope.entity  );//增加 
@@ -52,7 +52,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	}
 	
 	 
-	//批量删除 
+	//批量删除 dele
 	$scope.dele=function(){			
 		//获取选中的复选框			
 		specificationService.dele( $scope.selectIds ).success(
@@ -76,5 +76,18 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 			}			
 		);
 	}
+
+    /**
+	 * 新增选项行
+     */
+
+	$scope.addTableRow=function () {
+		$scope.entity.specificationOptionList.push({});
+
+    }
+
+    $scope.deleTableRow=function (index) {
+		$scope.entity.specificationOptionList.splice(index,1);
+    }
     
 });	
