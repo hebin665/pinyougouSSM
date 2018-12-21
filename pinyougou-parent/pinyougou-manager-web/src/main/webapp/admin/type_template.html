@@ -22,18 +22,22 @@
 	<script src="../plugins/angularjs/pagination.js"></script>
 	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
 	<script type="text/javascript" src="../js/base_pagination.js"></script>
+
+	<script type="text/javascript" src="../plugins/angularjs/angular-select2.js">  </script>
+
 	<script type="text/javascript" src="../js/service/typeTemplateService.js"></script>
 	<script type="text/javascript" src="../js/service/brandService.js">  </script>
+	<script type="text/javascript" src="../js/service/specificationService.js">  </script>
+
 	<script type="text/javascript" src="../js/controller/baseController.js"></script>
 	<script type="text/javascript" src="../js/controller/typeTemplateController.js"></script>
 
-    <script type="text/javascript" src="../plugins/angularjs/angular-select2.js">  </script>
 
 
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini"ng-app="pinyougou" ng-controller="typeTemplateController" ng-init="findBrandList()">
+<body class="hold-transition skin-red sidebar-mini"ng-app="pinyougou" ng-controller="typeTemplateController" ng-init="findBrandList();findSpecList()">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -88,7 +92,7 @@
 									      <td>{{entity.specIds}}</td>
 									      <td>{{entity.customAttributeItems}}</td>
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" >修改</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">修改</button>
 		                                  </td>
 			                          </tr>
 			                      </tbody>
@@ -125,8 +129,8 @@
 		      	</tr>			   
 		      	<tr>
 		      		<td>关联品牌</td>
-		      		<td><!--select2-model是ng-model的扩展属性，可以封装[id:1,"text","华为"}]格式，里面用来封装实体类的品牌属性，用于保存
-		      		config是数据来源，-->
+		      		<td><!--select2-model是ng-model的扩展属性，可以封装[id:1,"text","华为"}]格式，里面用来封装实体类的品牌属性
+		      		，用于绑定数据来源的数据，config是数据来源，-->
                         <input select2 select2-model="entity.brandIds" config="brandList" multiple placeholder="选择品牌（可多选）" class="form-control" type="text"/>
 
 		      		</td>
@@ -135,7 +139,8 @@
 		      	<tr>
 		      		<td>关联规格</td>
 		      		<td>
-	
+						<input select2 select2-model="entity.specIds" config="specList" multiple placeholder="选择规格（可多选）" class="form-control" type="text"/>
+
 		      		</td>
 		      	</tr>	
 		      	
