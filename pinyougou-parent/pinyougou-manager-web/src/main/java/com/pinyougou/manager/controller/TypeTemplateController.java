@@ -25,6 +25,7 @@ public class TypeTemplateController {
 	/**
 	 * 返回全部列表
 	 * @return
+	 * @return
 	 */
 	@RequestMapping("/findAll")
 	public List<TbTypeTemplate> findAll(){			

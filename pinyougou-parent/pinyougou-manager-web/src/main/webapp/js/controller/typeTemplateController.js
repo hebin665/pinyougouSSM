@@ -26,8 +26,14 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
-			}
+
+				$scope.entity= response;
+				/*将查出的字符串转换为json对象实现信息的回显。*/
+                $scope.entity.brandIds=  JSON.parse($scope.entity.brandIds);//转换品牌列表
+                $scope.entity.specIds=  JSON.parse($scope.entity.specIds);//转换规格列表
+                $scope.entity.customAttributeItems= JSON.parse($scope.entity.customAttributeItems);//转换扩展属性
+
+            }
 		);				
 	}
 	
