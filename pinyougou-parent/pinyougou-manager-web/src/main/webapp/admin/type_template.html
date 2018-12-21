@@ -124,8 +124,8 @@
 			
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
-		      		<td>商品类型</td>
-		      		<td><input  class="form-control" placeholder="商品类型">  </td>
+		      		<td>模板名称</td>
+		      		<td><input  class="form-control" placeholder="模板名称" ng-model="entity.name">  </td>
 		      	</tr>			   
 		      	<tr>
 		      		<td>关联品牌</td>
@@ -163,7 +163,7 @@
 								<tr ng-repeat="pojo in  entity.customAttributeItems">
 									<td><input type="checkbox" class="icheckbox_square-blue" ></td>
 									<td><input class="form-control" placeholder="属性名称" ng-model="pojo.text" ></td>
-									<td><button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button></td>
+									<td><button type="button" class="btn btn-default" title="删除" ng-click="deleTableRow($index)" ><i class="fa fa-trash-o"></i> 删除</button></td>
 								</tr>
 
 							</tbody>
@@ -176,7 +176,7 @@
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
