@@ -101,4 +101,6 @@ app.controller('typeTemplateController' ,function($scope,$controller,typeTemplat
 
         )
     }
+
+    //新增扩展属性行
 });	
