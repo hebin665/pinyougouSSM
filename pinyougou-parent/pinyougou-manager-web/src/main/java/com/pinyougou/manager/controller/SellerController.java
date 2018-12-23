@@ -55,6 +55,9 @@ public class SellerController {
 			e.printStackTrace();
 			return new Result(false, "增加失败");
 		}
+
+
+
 	}
 	
 	/**
@@ -110,5 +113,20 @@ public class SellerController {
 	public PageResult search(@RequestBody TbSeller seller, int page, int rows  ){
 		return sellerService.findPage(seller, page, rows);		
 	}
-	
-}
+	/**
+	 * 更改状态
+	 * @param sellerId 商家ID
+	 * @param status 状态
+	 */
+	@RequestMapping("/updateStatus")
+	public Result updateStatus(String sellerId, String status) {
+		try {
+			sellerService.updateStatus(sellerId,status);
+			return new Result(true,"成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"失败");
+		}
+	}
+
+	}
