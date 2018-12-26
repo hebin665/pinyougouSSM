@@ -62,7 +62,7 @@ public interface ItemCatService {
 	 * 根据上级ID返回列表
 	 * @return
 	 */
-	public List<TbItemCat> findByParentId(Long parentId);
+	public List<TbItemCat> findByParentId(String parentId);
 
 
 }
