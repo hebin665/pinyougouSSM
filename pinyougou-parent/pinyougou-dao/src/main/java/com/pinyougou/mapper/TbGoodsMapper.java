@@ -2,6 +2,7 @@ package com.pinyougou.mapper;
 
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbGoodsExample;
+import com.pinyougou.pojogroup.Goods;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
