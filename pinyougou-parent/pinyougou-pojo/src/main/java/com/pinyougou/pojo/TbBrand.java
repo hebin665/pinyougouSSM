@@ -1,5 +1,7 @@
 package com.pinyougou.pojo;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import java.io.Serializable;
 
 /**
