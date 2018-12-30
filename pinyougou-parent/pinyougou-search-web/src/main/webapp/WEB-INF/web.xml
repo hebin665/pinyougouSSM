@@ -33,6 +33,10 @@
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <!--匹配欢迎首面-->
+  <welcome-file-list>
+    <welcome-file>search.html</welcome-file>
+  </welcome-file-list>
 
 
 

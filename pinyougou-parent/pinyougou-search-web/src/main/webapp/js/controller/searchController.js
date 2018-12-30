@@ -7,4 +7,5 @@ app.controller('searchController',function ($scope,searchService) {
             }
         )
     }
+
 });
