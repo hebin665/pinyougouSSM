@@ -10,4 +10,10 @@ app.controller("contentController",function ($scope,$controller,contentService) 
         )
     }
 
+    //搜索跳转传递参数
+    $scope.search=function(){
+        location.href="http://localhost:9104/search.html#?keywords="+$scope.keywords;
+    }
+
+
 })

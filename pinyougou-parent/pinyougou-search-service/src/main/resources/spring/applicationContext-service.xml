@@ -12,4 +12,5 @@
     <dubbo:application name="pinyougou-search-service"/>
     <dubbo:registry address="zookeeper://192.168.25.128:2181"/>
     <dubbo:annotation package="com.pinyougou.search.service.impl" />
+    <dubbo:provider timeout="60000"/>
 </beans>
