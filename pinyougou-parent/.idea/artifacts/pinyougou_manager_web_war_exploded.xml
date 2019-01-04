@@ -7,6 +7,9 @@
           <element id="module-output" name="pinyougou-manager-web" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="pinyougou-page-interface-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-page-interface" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.4.RELEASE" />
