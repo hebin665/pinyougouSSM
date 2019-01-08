@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.alibaba.fastjson.JSON;
 import com.pinyougou.user.service.UserService;
@@ -177,6 +178,12 @@ public class UserServiceImpl implements UserService {
 		System.out.println("验证码"+smscode);
 		//2.将验证码放入redis
 		redisTemplate.boundHashOps("smscode").put(phone,smscode);
+
+	/*	改进后的生成验证码
+	String key="smscode_"+phone;
+		redisTemplate.boundValueOps(key).set(smscode);
+		//给当前key设置过期时间
+		redisTemplate.expire(key,30, TimeUnit.SECONDS);*/
 		//3.短信内容发给activeMQ
   /*      jmsTemplate.send(smsDestination, new MessageCreator() {
             @Override
