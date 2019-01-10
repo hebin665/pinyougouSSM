@@ -12,7 +12,15 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/../pinyougou-dao/src/main/resources/spring/applicationContext-dao.xml</file>
+          <file>file://$MODULE_DIR$/../pinyougou-common/src/main/resources/spring/applicationContext-redis.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/applicationContext-jms-producer.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/applicationContext-service.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/applicationContext-tx.xml</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_9">
