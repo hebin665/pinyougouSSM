@@ -7,6 +7,7 @@ import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojo.TbOrderItem;
 import com.pinyougou.pojogroup.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,9 +21,12 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private TbItemMapper itemMapper;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+
     @Override
     public List<Cart> addGoodsToCartList(List<Cart> cartList, Long itemId, Integer num) {
-
         //1通过itemid查所属的商品sku详细信息
         TbItem item = itemMapper.selectByPrimaryKey(itemId);
         if(item==null){
@@ -31,10 +35,8 @@ public class CartServiceImpl implements CartService {
         if(!item.getStatus().equals("1")){
             throw new RuntimeException("商品状态无效");
         }
-
         //2.获取商家ID
         String sellerId = item.getSellerId();
-
         //3.根据商家ID判断购物车列表中是否存在该商家的购物车
         Cart cart = searchCartBySellerId(cartList, sellerId);
         //4.如果购物车列表中不存在该商家的购物车
@@ -49,7 +51,6 @@ public class CartServiceImpl implements CartService {
             cart.setOrderItemList(orderItemList);
             //4.2将购物车对象添加到购物车列表
             cartList.add(cart);
-
         }else {
             //5.如果购物车列表中存在该商家的购物车
             // 查询购物车明细列表中是否存在该商品
@@ -57,9 +58,7 @@ public class CartServiceImpl implements CartService {
             if(tbOrderItem == null){
                 //5.1. 如果没有，新增购物车明细
                 tbOrderItem=createOrderItem(item,num);
-
                 cart.getOrderItemList().add(tbOrderItem);
-
             }else{
                 //5.2. 如果有，在原购物车明细上添加数量，更改金额
                 tbOrderItem.setNum(tbOrderItem.getNum()+num);
@@ -74,15 +73,30 @@ public class CartServiceImpl implements CartService {
                     cartList.remove(cart);
                 }
             }
-
-
         }
-
-
-
-
         return cartList;
     }
+
+    @Override
+    public List<Cart> findCartListFromRedis(String username) {
+        System.out.println("从redis中提取购物车数据。。。"+username);
+        List<Cart> cartList = (List<Cart>) redisTemplate.boundHashOps("cartList").get(username);
+        if(cartList==null){
+            cartList=new ArrayList();
+
+        }
+        return cartList;
+    }
+
+    @Override
+    public void saveCartListToRedis(String username, List<Cart> cartList) {
+        System.out.println("向redis存入购物车数据....."+username);
+        redisTemplate.boundHashOps("cartList").put(username,cartList);
+    }
+
+
+
+
 
 
 

@@ -12,4 +12,5 @@
     <dubbo:application name="pinyougou-cart-service"/>
     <dubbo:registry address="zookeeper://192.168.25.128:2181"/>
     <dubbo:annotation package="com.pinyougou.cart.service.impl" />
+    <dubbo:provider timeout="6000"/>
 </beans>
