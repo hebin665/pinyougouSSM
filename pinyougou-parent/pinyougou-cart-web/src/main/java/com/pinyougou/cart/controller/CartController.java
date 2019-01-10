@@ -39,17 +39,26 @@ public class CartController {
         /*当前登陆人 账号*/
         //得到登陆人账号,判断当前是否有人登陆
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(username.equals("anonymousUser")){  //如果未登录
-            //从cookie提取购物车
-            String cartListString = CookieUtil.getCookieValue(request, "cartList", "UTF-8");
-            if(cartListString==null || cartListString.equals("")){
-                cartListString="[]";
-            }
-            List<Cart> cartList_cookie = JSON.parseArray(cartListString, Cart.class);
+        //从cookie提取购物车
+        String cartListString = CookieUtil.getCookieValue(request, "cartList", "UTF-8");
+        if(cartListString==null || cartListString.equals("")){
+            cartListString="[]";
+        }
+        List<Cart> cartList_cookie = JSON.parseArray(cartListString, Cart.class);
 
+        if(username.equals("anonymousUser")){  //如果未登录
             return cartList_cookie;
         }else{//如果已登录
-            List<Cart> cartList_redis = cartService.findCartListFromRedis(username);
+            List<Cart> cartList_redis = cartService.findCartListFromRedis(username);//从redis中提取
+            if(cartList_cookie.size()>0){//如果本地存在购物车,合并购物车
+               cartList_redis = cartService.mergeCartList(cartList_cookie, cartList_redis);
+               //清除本地cookie数据
+                util.CookieUtil.deleteCookie(request,response,"cartList");
+                //将合并后的数据存入redis
+                cartService.saveCartListToRedis(username,cartList_redis);
+
+            }
+
             return cartList_redis;
         }
 

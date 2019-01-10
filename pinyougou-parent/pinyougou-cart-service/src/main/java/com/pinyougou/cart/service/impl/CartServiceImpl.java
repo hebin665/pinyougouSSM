@@ -94,10 +94,22 @@ public class CartServiceImpl implements CartService {
         redisTemplate.boundHashOps("cartList").put(username,cartList);
     }
 
-
-
-
-
+    /**
+     * 合并购物车
+     * @param cartList1
+     * @param cartList2
+     * @return
+     */
+    @Override
+    public List<Cart> mergeCartList(List<Cart> cartList1, List<Cart> cartList2) {
+        System.out.println("合并购物车");
+        for (Cart cart : cartList2) {
+            for (TbOrderItem orderItem : cart.getOrderItemList()) {
+              cartList1 = addGoodsToCartList(cartList1, orderItem.getItemId(), orderItem.getNum());
+            }
+        }
+        return cartList1;
+    }
 
 
     //根据商家ID判断购物车列表中是否存在该商家的购物车
@@ -138,7 +150,7 @@ public class CartServiceImpl implements CartService {
      */
     private TbOrderItem searchOrderItemByItemId(List<TbOrderItem> orderItemList,Long itemId){
         for (TbOrderItem orderItem : orderItemList) {
-            if(itemId.equals(orderItem.getItemId())){
+            if(orderItem.getItemId().longValue()==itemId.longValue()){
                 return orderItem;
             }
         }
