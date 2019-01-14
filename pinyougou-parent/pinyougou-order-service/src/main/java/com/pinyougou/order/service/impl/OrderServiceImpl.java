@@ -123,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
 			payLog.setTotalFee( (long)(total_money*100 ) );//总金额(分)
 			payLog.setTradeState("0");//支付状态
 			payLog.setUserId(order.getUserId());//用户ID
-			payLogMapper.insert(payLog);//插入到支付日志表
+			payLogMapper.insert(payLog);//插入到支付日志表，直接在这里传递参数
 			redisTemplate.boundHashOps("payLog").put(order.getUserId(), payLog);//放入缓存
 		}
 
