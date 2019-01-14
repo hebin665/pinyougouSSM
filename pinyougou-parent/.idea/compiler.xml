@@ -14,9 +14,13 @@
         <module name="pinyougou-content-service" />
         <module name="pinyougou-dao" />
         <module name="pinyougou-manager-web" />
+        <module name="pinyougou-order-interface" />
+        <module name="pinyougou-order-service" />
         <module name="pinyougou-page-interface" />
         <module name="pinyougou-page-service" />
         <module name="pinyougou-page-web" />
+        <module name="pinyougou-pay-interface" />
+        <module name="pinyougou-pay-service" />
         <module name="pinyougou-pojo" />
         <module name="pinyougou-portal-web" />
         <module name="pinyougou-search-interface" />
@@ -40,10 +44,14 @@
       <module name="pinyougou-content-service" target="9" />
       <module name="pinyougou-dao" target="9" />
       <module name="pinyougou-manager-web" target="9" />
+      <module name="pinyougou-order-interface" target="9" />
+      <module name="pinyougou-order-service" target="9" />
       <module name="pinyougou-page-interface" target="9" />
       <module name="pinyougou-page-service" target="9" />
       <module name="pinyougou-page-web" target="9" />
       <module name="pinyougou-parent" target="9" />
+      <module name="pinyougou-pay-interface" target="9" />
+      <module name="pinyougou-pay-service" target="9" />
       <module name="pinyougou-pojo" target="9" />
       <module name="pinyougou-portal-web" target="9" />
       <module name="pinyougou-search-interface" target="9" />
